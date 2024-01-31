@@ -1,0 +1,113 @@
+<% include('../layouts/header.ejs') %>
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            /* Set a light background color */
+        }
+
+        h2 {
+            color: #007bff;
+            /* Set heading color to a shade of blue */
+        }
+
+        .btn {
+            transition: transform 0.3s ease-in-out;
+            /* Add a smooth transform effect to buttons */
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            /* Increase size on hover for a subtle effect */
+        }
+
+        .table {
+            background-color: #ffffff;
+            /* Set a white background for the table */
+        }
+
+        .img-thumbnail {
+            border: 2px solid #dee2e6;
+            /* Add a subtle border around thumbnails */
+            border-radius: 5px;
+            /* Apply border-radius for rounded corners */
+            width: 80px;
+            /* Set the desired width */
+            height: 80px;
+            /* Set the desired height */
+            object-fit: cover;
+        }
+
+        th {
+            background-color: #6c757d;
+            color: #dee2e6;
+        }
+
+        .badge {
+            margin-right: 5px;
+            /* Add spacing between badges */
+        }
+    </style>
+
+    <h2 class="mt-3 mb-4">Dashboard</h2>
+    <a href="/admin/new-user" class="btn btn-primary mb-3">Add New User</a>
+
+    <form>
+        <input type="text" placeholder="Search username,email,mobile" name="search">
+        <input type="submit" value="Search">
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Profile</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <!-- <th>Verified</th> -->
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (user.length> 0) { %>
+                <% for (let i=0; i < user.length; i++) { %>
+                    <tr>
+                        <td><img src="/userImages/<%= user[i].image %>" class="img-thumbnail"
+                                alt="<%= user[i].image %>"></td>
+                        <td>
+                            <%= user[i].name %>
+                        </td>
+                        <td>
+                            <%= user[i].email %>
+                        </td>
+                        <td>
+                            <%= user[i].mobile %>
+                        </td>
+                        <!-- <td>
+                        <% if (user[i].is_verified == 0) { %>
+                            <span class="badge badge-danger">Not Verified</span>
+                        <% } else { %>
+                            <span class="badge badge-success">Verified</span>
+                        <% } %>
+                    </td> -->
+                        <td>
+                            <strong><a href="/admin/edit-user?id=<%= user[i]._id %>"
+                                    class="btn btn-warning btn-sm">Edit</a></strong>
+                            <strong><a href="/admin/delete-user?id=<%= user[i]._id %>"
+                                    class="btn btn-danger btn-sm">Delete</a></strong>
+                        </td>
+                    </tr>
+                    <% } %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="5">Users Not Found</td>
+                            </tr>
+                            <% } %>
+        </tbody>
+    </table>
+
+    <a href="/admin/home" class="btn btn-secondary">Back to Home</a>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <% include('../layouts/footer.ejs') %>

@@ -1,0 +1,100 @@
+<% include('../layouts/header.ejs') %>
+
+    <style>
+        body {
+            background: url('/gradient.png') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0%;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1,
+        h3 {
+            color: #333;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 70%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        #password-toggle {
+            font-size: 20px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        #password-toggle:hover {
+            color: #007bff;
+        }
+    </style>
+
+    <div class="container-fluid">
+        <div class="row justify-content-center ">
+            <div class="col-md-6 mt-5 col-lg-4  ">
+                <div class="login-container">
+                    <h1 class="mb-4">Admin Login</h1>
+
+                    <% if (typeof message !=='undefined' ) { %>
+                        <h3 class="text-danger mb-4">
+                            <%= message %>
+                        </h3>
+                        <% } %>
+
+                            <form action="" method="post">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" class="form-control" placeholder="Enter email"
+                                        required>
+                                </div>
+
+                                <div class="form-group password-container">
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" name="password" class="form-control"
+                                        placeholder="Enter password" required>
+                                    <span class="password-toggle" id="password-toggle">&#x1F441;</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-dark  btn-block">Login</button>
+                                </div>
+                            </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <script>
+        const passwordInput = document.getElementById('password');
+        const passwordToggle = document.getElementById('password-toggle');
+
+        passwordToggle.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            passwordToggle.innerHTML = type === 'password' ? '&#x1F441;' : '&#x1F440;';
+        });
+    </script>
+
+    <% include('../layouts/footer.ejs') %>

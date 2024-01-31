@@ -1,0 +1,57 @@
+<%- include('../layouts/header.ejs') -%>
+
+    <div class="container mt-5">
+        <h3 class="mb-4">Welcome <%= user.name %>
+        </h3>
+
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table">
+                    <tr>
+                        <td><strong>Name</strong></td>
+                        <td>
+                            <%= user.name %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Email</strong></td>
+                        <td>
+                            <%= user.email %>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Mobile</strong></td>
+                        <td>
+                            <%= user.mobile %>
+                        </td>
+                    </tr>
+                    <!-- <tr>
+                    <td><strong>Verified</strong></td>
+                    <td>
+                        <% if (user.is_verified == 1) { %>
+                            <span class="badge badge-success">True</span>
+                        <% } else { %>
+                            <span class="badge badge-danger">False</span>
+                        <% } %>
+                    </td>
+                </tr> -->
+
+                </table>
+
+                <a href="/logout" class="btn btn-danger">Logout</a>
+            </div>
+
+            <div class="col-md-6">
+                <div class="text-center">
+                    <img src="userImages/<%= user.image %>" alt="<%= user.image %>" class="img-fluid rounded"
+                        style="max-width: 300px; max-height: 300px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+    <% include('../layouts/footer.ejs') %>

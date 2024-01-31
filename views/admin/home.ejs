@@ -1,0 +1,41 @@
+<% include('../layouts/header.ejs') %>
+
+    <div class="container mt-5">
+        <h1>Hey there, <%= admin.name %>
+        </h1>
+
+        <a href="/admin/dashboard" class="btn btn-primary mt-3">Dashboard</a>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <table class="table">
+                    <tr>
+                        <td><strong>Email</strong></td>
+                        <td>
+                            <%= admin.email %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mobile</strong></td>
+                        <td>
+                            <%= admin.mobile %>
+                        </td>
+                    </tr>
+                </table>
+
+                <a href="/admin/logout" class="btn btn-danger">Logout</a>
+            </div>
+
+            <div class="col-md-6">
+                <div class="text-center">
+                    <img src="/userImages/<%= admin.image %>" alt="<%= admin.image %>" class="img-fluid rounded"
+                        style="width: 200px; height: 200px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <% include('../layouts/footer.ejs') %>
